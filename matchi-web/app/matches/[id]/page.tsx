@@ -44,8 +44,9 @@ export default function MatchDetailPage() {
         const response = await axios.get(`/api/matches/${params.id}`)
         setMatch(response.data)
         // Check if user is already in the match
-        if ((session?.user as any)?.id && response.data.players) {
-           setIsJoined(response.data.players.some((p: any) => p.user_id === (session.user as any).id))
+        if (session?.user && response.data.players) {
+           const userId = (session.user as any).id
+           setIsJoined(response.data.players.some((p: any) => p.user_id === userId))
         }
       } catch (error) {
         console.error("Match detail error:", error)
@@ -136,7 +137,7 @@ export default function MatchDetailPage() {
                    <div>
                      <div style={{ fontSize: 12, color: "var(--text-muted)" }}>الوقت</div>
                      <div style={{ fontSize: 15, fontWeight: 700 }}>{match.date}</div>
-                     <div style={{ fontSize: 13, color: "var(--text-secondary)" }}>{match.start_time.substring(0, 5)} - {match.end_time.substring(0, 5)}</div>
+                     <div style={{ fontSize: 13, color: "var(--text-secondary)" }}>{(match.start_time || "").substring(0, 5)} - {(match.end_time || "").substring(0, 5)}</div>
                    </div>
                 </div>
               </div>
