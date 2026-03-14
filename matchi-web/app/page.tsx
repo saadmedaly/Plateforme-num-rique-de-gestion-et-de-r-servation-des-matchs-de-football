@@ -38,7 +38,7 @@ export default function Home() {
   const steps = [
     {
       icon: "🔍",
-      title: "ابحث بسهولة",
+      title: "ابحث بكل بسهولة",
       desc: "استخدم الخريطة أو الفلاتر للعثور على أقرب ملعب متاح.",
     },
     {
